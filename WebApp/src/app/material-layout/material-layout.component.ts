@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
-import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -37,6 +36,10 @@ export class MaterialLayoutComponent implements OnInit {
 
     public isMenuOpen = true;
     public contentMargin = 240;
+    
+    get isHandset(): boolean {
+      return this.breakpointObserver.isMatched(Breakpoints.Handset);
+    }
 
   // *********************************************************************************************
   // * LIFE CYCLE EVENT FUNCTIONS
@@ -47,6 +50,13 @@ export class MaterialLayoutComponent implements OnInit {
       this.title = 'Material Layout Demo';
     }
 
+    ngDoCheck() {
+        if (this.isHandset) {
+          this.isMenuOpen = false;
+        } else {
+          this.isMenuOpen = true;
+        }      
+    }
 
   // *********************************************************************************************
   // * COMPONENT FUNCTIONS
