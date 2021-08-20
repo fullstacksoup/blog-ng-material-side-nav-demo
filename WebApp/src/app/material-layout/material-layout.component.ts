@@ -13,17 +13,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class MaterialLayoutComponent implements OnInit {
 
-  @HostBinding('class') componentCssClass;
+
 
   public loading: boolean;
   public isAuthenticated: boolean;
   public title: string;
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-    .pipe(
-      map(result => result.matches),
-      shareReplay()
-    );
   public isBypass: boolean;
   public mobile: boolean;
   public isMenuInitOpen: boolean;
@@ -36,7 +31,7 @@ export class MaterialLayoutComponent implements OnInit {
 
     public isMenuOpen = true;
     public contentMargin = 240;
-    
+
     get isHandset(): boolean {
       return this.breakpointObserver.isMatched(Breakpoints.Handset);
     }
@@ -55,7 +50,7 @@ export class MaterialLayoutComponent implements OnInit {
           this.isMenuOpen = false;
         } else {
           this.isMenuOpen = true;
-        }      
+        }
     }
 
   // *********************************************************************************************
